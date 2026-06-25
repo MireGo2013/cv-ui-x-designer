@@ -4,10 +4,16 @@ import Image from "next/image";
 import { Header } from "@/components/sections/Header";
 import { Card } from "@/components/ui/Card";
 import { IconButton, ChevronLeft } from "@/components/ui/IconButton";
-import { caseStudies, projectImages, caseDetails, type CaseDetail } from "@/data/content";
+import {
+  caseStudies,
+  projectImages,
+  caseDetails,
+  type CaseDetail,
+} from "@/data/content";
 
 export function generateStaticParams() {
-  return caseStudies.map((c) => ({ slug: c.slug }));
+  // telderi has its own dedicated page at /cases/telderi/page.tsx
+  return caseStudies.filter((c) => c.slug !== "telderi").map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
