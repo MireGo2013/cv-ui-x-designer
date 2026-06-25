@@ -43,7 +43,9 @@ export function ProjectCard({
           <h3 className="text-ink text-[22px] leading-[1.2] font-medium tracking-[-0.02em] lg:text-[28px]">
             {title}
           </h3>
-          <p className="text-muted mt-3 text-[16px] leading-[1.4] lg:mt-0">{subtitle}</p>
+          <p className="text-muted mt-3 text-[16px] leading-[1.4] whitespace-pre-line lg:mt-0">
+            {subtitle}
+          </p>
         </div>
         <div className="relative min-h-[220px] min-w-0 flex-1">{visual}</div>
       </div>
@@ -79,14 +81,21 @@ export function Shot({
   alt,
   fit = "cover",
   position = "top",
+  ring,
 }: {
   src: string;
   alt: string;
   fit?: "cover" | "contain";
   position?: "top" | "bottom" | "center";
+  ring?: boolean;
 }) {
   return (
-    <div className="group/shot border-line absolute inset-0 overflow-hidden rounded-t-[16px]">
+    <div
+      className={cn(
+        "group/shot border-line absolute inset-0 overflow-hidden rounded-t-[16px]",
+        ring ? "ring-3 ring-[#F3F3F9]" : "",
+      )}
+    >
       <Image
         src={src}
         alt={alt}
@@ -117,7 +126,7 @@ export function TelderiCollage({ images }: { images: string[] }) {
   return (
     <div className="absolute inset-0 grid grid-cols-[1fr_1.1fr] grid-rows-2 gap-3">
       {/* left: full-height portrait screen */}
-      <div className="group/a border-line relative row-span-2 overflow-hidden rounded-[14px] border bg-white">
+      <div className="group/a relative row-span-2 overflow-hidden rounded-t-[14px] ring-3 ring-[#F3F3F9]">
         <Image
           src={a}
           alt="Telderi — страница лота"
@@ -127,7 +136,7 @@ export function TelderiCollage({ images }: { images: string[] }) {
         />
       </div>
       {/* top-right: чат поддержки */}
-      <div className="group/b border-line relative overflow-hidden rounded-[14px] border bg-white">
+      <div className="group/b border-line relative overflow-hidden rounded-[14px] ring-3 ring-[#F3F3F9]">
         <Image
           src={b}
           alt="Telderi — чат поддержки"
@@ -137,7 +146,7 @@ export function TelderiCollage({ images }: { images: string[] }) {
         />
       </div>
       {/* bottom-right: профиль / финансы */}
-      <div className="group/c border-line relative overflow-hidden rounded-[14px] border bg-white">
+      <div className="group/c border-line relative overflow-hidden rounded-t-[14px] ring-3 ring-[#F3F3F9]">
         <Image
           src={c}
           alt="Telderi — профиль финансы"
@@ -198,8 +207,8 @@ export function FurnishCollage({ images, alts }: { images: string[]; alts: strin
     <div className="absolute inset-0">
       {/* Left phone — lifts first (no delay) */}
       <div
-        className="absolute transition-transform duration-500 ease-out group-hover:-translate-y-5"
-        style={{ left: "6%", top: "47%", width: "41%", height: "100%" }}
+        className="absolute transition-transform duration-500 ease-out group-hover:-translate-y-10"
+        style={{ left: "6%", top: "30%", width: "41%", height: "115%" }}
       >
         <div className="h-full w-full" style={{ transform: "rotate(-10.5deg)" }}>
           <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px]">
@@ -215,8 +224,8 @@ export function FurnishCollage({ images, alts }: { images: string[]; alts: strin
       </div>
       {/* Right phone — lifts second (100ms delay) */}
       <div
-        className="absolute transition-transform delay-100 duration-500 ease-out group-hover:-translate-y-5"
-        style={{ left: "43%", top: "37%", width: "41%", height: "100%" }}
+        className="absolute transition-transform delay-100 duration-500 ease-out group-hover:-translate-y-10"
+        style={{ left: "43%", top: "20%", width: "41%", height: "115%" }}
       >
         <div className="h-full w-full" style={{ transform: "rotate(11.3deg)" }}>
           <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px]">

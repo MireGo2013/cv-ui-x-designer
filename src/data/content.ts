@@ -57,7 +57,7 @@ export const projects: Project[] = [
   {
     slug: "furnish",
     title: "Furnish",
-    subtitle: "Мобильное e-commerce приложение для продажи мебели и товаров для интерьера.",
+    subtitle: "Мобильное e-commerce приложение для продажи мебели\nи товаров для интерьера.",
     href: null,
   },
   {
@@ -168,10 +168,7 @@ export const projectImages: Record<string, string[]> = {
     "/images/projects/telderi3.webp",
     "/images/projects/telderi4.webp",
   ],
-  "event-panel": [
-    "/images/projects/event-panel.webp",
-    "/images/projects/event-panel2.webp",
-  ],
+  "event-panel": ["/images/projects/event-panel.webp", "/images/projects/event-panel2.webp"],
   "fleep-bot": [
     "/images/projects/fleep1.webp",
     "/images/projects/fleep2.webp",
@@ -312,8 +309,7 @@ export const telderiCase = {
   },
   research: {
     heading: "Исследование",
-    intro:
-      "Интервью с продавцами и покупателями, анализ воронки листинга и обращений в поддержку.",
+    intro: "Интервью с продавцами и покупателями, анализ воронки листинга и обращений в поддержку.",
     rolesLabel: "Ключевые роли:",
     roles: [
       "Продавец-новичок: впервые продаёт актив, не понимает, какие данные нужно указать и как подтвердить доход или трафик.",
@@ -322,7 +318,10 @@ export const telderiCase = {
     ],
     painsLabel: "Главные боли:",
     pains: [
-      { title: "Создание лота", items: ["«стена полей»", "непонятно, что обязательно", "страх ошибиться"] },
+      {
+        title: "Создание лота",
+        items: ["«стена полей»", "непонятно, что обязательно", "страх ошибиться"],
+      },
       { title: "Личный кабинет", items: ["нет единой картины", "где мои сделки?"] },
       { title: "Подтверждение данных", items: ["как доказать трафик", "отказ модерации"] },
       { title: "Доверие", items: ["устаревший вид", "можно ли доверять суммам?"] },

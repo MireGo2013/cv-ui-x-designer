@@ -34,6 +34,7 @@ export function Projects() {
               alt="EventPanel — дашборд аналитики"
               fit="contain"
               position="center"
+              ring
             />
           }
         />

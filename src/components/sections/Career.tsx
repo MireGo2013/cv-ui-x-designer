@@ -5,7 +5,7 @@ import { career, mentorship, resumeUrl, type ExperienceItem } from "@/data/conte
 
 function ExperienceRow({ item }: { item: ExperienceItem }) {
   return (
-    <li className="bg-white border-line flex items-center gap-3 rounded-[12px] border px-5 py-3">
+    <li className="border-line flex items-center gap-3 rounded-[12px] border bg-white px-5 py-3">
       <div className="relative size-[52px] shrink-0 overflow-hidden rounded-full">
         <Image
           src={item.logo}
@@ -38,7 +38,13 @@ export function Career() {
               <h2 className="text-ink text-[22px] leading-[1.2] font-medium tracking-[-0.02em] md:text-[28px]">
                 Карьера
               </h2>
-              <Button as="a" href={resumeUrl} target="_blank" rel="noopener noreferrer">
+              <Button
+                as="a"
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#FFFFFF]"
+              >
                 Скачать CV
               </Button>
             </div>
