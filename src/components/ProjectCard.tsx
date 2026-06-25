@@ -5,10 +5,10 @@ import { cn } from "@/lib/cn";
 
 const cardBase = cn(
   "group block overflow-hidden rounded-[24px] border border-line bg-surface",
-  "transition-shadow duration-200",
+  "transition-[box-shadow,transform] duration-300 ease-out",
 );
 const interactive = cn(
-  "hover:shadow-[0_12px_40px_-12px_rgba(46,48,55,0.18)]",
+  "hover:-translate-y-[3px] hover:shadow-[0_16px_48px_-12px_rgba(46,48,55,0.22)]",
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
 );
 
@@ -144,6 +144,15 @@ export function TelderiCollage({ images }: { images: string[] }) {
  * Phone collage: 3 mobile screenshots side by side.
  * Centre phone slightly taller (lifted) to match the Figma layout.
  */
+const PHONE_HOVER = [
+  // left phone: slides left + scales up
+  "group-hover:-translate-x-2 group-hover:scale-[1.05]",
+  // center phone: rises up + scales up
+  "group-hover:-translate-y-3 group-hover:scale-[1.05]",
+  // right phone: slides right + scales up
+  "group-hover:translate-x-2 group-hover:scale-[1.05]",
+] as const;
+
 export function PhoneCollage({ images, alts }: { images: string[]; alts: string[] }) {
   return (
     <div className="flex h-full items-end justify-center gap-3">
@@ -154,7 +163,9 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
             key={src}
             className={cn(
               "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] border bg-white shadow-sm w-[30%]",
+              "transition-transform duration-300 ease-out",
               isMid ? "h-full" : "h-[88%]",
+              PHONE_HOVER[i],
             )}
           >
             <Image
@@ -181,7 +192,7 @@ export function FurnishCollage({ images, alts }: { images: string[]; alts: strin
     <div className="relative h-full w-full">
       <div
         className="absolute"
-        style={{ left: "6%", top: "27%", width: "37%", height: "82%", transform: "rotate(-10.5deg)" }}
+        style={{ left: "6%", top: "27%", width: "41%", height: "100%", transform: "rotate(-10.5deg)" }}
       >
         <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px] border bg-white shadow-sm">
           <Image
@@ -195,7 +206,7 @@ export function FurnishCollage({ images, alts }: { images: string[]; alts: strin
       </div>
       <div
         className="absolute"
-        style={{ left: "43%", top: "21%", width: "37%", height: "82%", transform: "rotate(11.3deg)" }}
+        style={{ left: "43%", top: "21%", width: "41%", height: "100%", transform: "rotate(11.3deg)" }}
       >
         <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px] border bg-white shadow-sm">
           <Image
