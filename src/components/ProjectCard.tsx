@@ -160,7 +160,7 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
           <div
             key={src}
             className={cn(
-              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] border w-[30%]",
+              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] w-[30%]",
               "transition-all duration-300 ease-out",
               isMid ? "z-20 h-full" : "z-10 h-[88%]",
               i === 0 && "group-hover:-rotate-[18deg] group-hover:translate-x-[28%] group-hover:scale-[0.93]",
@@ -172,7 +172,7 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
               alt={alts[i] ?? `Экран ${i + 1}`}
               fill
               sizes="(max-width: 640px) 33vw, 220px"
-              className="object-cover object-top"
+              className="object-contain object-center"
             />
           </div>
         );
