@@ -313,10 +313,7 @@ export default function TelderiPage() {
                   {item.images.length > 0 && (
                     <div className="mt-6 space-y-4">
                       {item.images.map((img) => (
-                        <div
-                          key={img.src}
-                          className="border-line overflow-hidden rounded-[16px] border bg-white shadow-sm"
-                        >
+                        <div key={img.src} className="border-line overflow-hidden rounded-[16px]">
                           <Image
                             src={img.src}
                             alt={img.alt}
@@ -345,7 +342,7 @@ export default function TelderiPage() {
                             </blockquote>
                           )}
                           {sub.image && (
-                            <div className="border-line mt-6 overflow-hidden rounded-[16px] border bg-white shadow-sm">
+                            <div className="border-line mt-6 overflow-hidden rounded-[16px]">
                               <Image
                                 src={sub.image}
                                 alt={sub.title}

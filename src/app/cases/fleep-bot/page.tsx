@@ -128,7 +128,7 @@ export default function FleepBotPage() {
           </div>
 
           {/* Main product screenshot */}
-          <div className="border-line mt-8 overflow-hidden rounded-[16px] border bg-white shadow-sm">
+          <div className="mt-8 overflow-hidden rounded-[16px]">
             <Image
               src={mainImage.src}
               alt={mainImage.alt}
@@ -255,7 +255,7 @@ export default function FleepBotPage() {
                   {/* Before → After phone screens */}
                   {item.beforeAfter && (
                     <div className="mt-6 flex flex-col items-center gap-4 md:flex-row md:items-end md:gap-3">
-                      <div className="border-line w-full max-w-[260px] overflow-hidden rounded-[24px] border bg-white shadow-sm md:mb-[80px] md:flex-1">
+                      <div className="w-full max-w-[260px] overflow-hidden rounded-[24px] ring-3 ring-[#F3F3F9] md:mb-[80px] md:flex-1">
                         <Image
                           src={item.beforeAfter.before.src}
                           alt={item.beforeAfter.before.alt}
@@ -266,7 +266,7 @@ export default function FleepBotPage() {
                         />
                       </div>
                       <BeforeAfterArrow />
-                      <div className="border-line w-full max-w-[260px] overflow-hidden rounded-[24px] border bg-white shadow-sm md:flex-1">
+                      <div className="w-full max-w-[260px] overflow-hidden rounded-[24px] ring-3 ring-[#F3F3F9] md:flex-1">
                         <Image
                           src={item.beforeAfter.after.src}
                           alt={item.beforeAfter.after.alt}
@@ -282,7 +282,7 @@ export default function FleepBotPage() {
                   {/* Single centered phone image */}
                   {item.singleImage && (
                     <div className="mt-6 flex justify-center">
-                      <div className="border-line w-full max-w-[300px] overflow-hidden rounded-[24px] border bg-white shadow-sm">
+                      <div className="w-full max-w-[300px] overflow-hidden rounded-[24px]">
                         <Image
                           src={item.singleImage.src}
                           alt={item.singleImage.alt}
