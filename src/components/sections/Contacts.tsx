@@ -14,8 +14,9 @@ export function Contacts() {
             className="text-ink text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] md:text-[40px]"
           >
             Открыта к{" "}
-            <span className="text-accent-pressed">новым проектам</span>
-            {" "}и сотрудничеству
+            <span className="text-accent-pressed">новым проектам</span> 
+            <br/>
+            и сотрудничеству
           </h2>
           <p className="text-muted text-[18px] leading-[1.2] md:text-[24px]">
             {contacts.subheading}

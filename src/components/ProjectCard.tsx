@@ -86,7 +86,7 @@ export function Shot({
   position?: "top" | "center";
 }) {
   return (
-    <div className="absolute inset-0 overflow-hidden rounded-[16px] border border-line bg-white">
+    <div className="group/shot absolute inset-0 overflow-hidden rounded-[16px] border border-line bg-white">
       <Image
         src={src}
         alt={alt}
@@ -95,6 +95,7 @@ export function Shot({
         className={cn(
           fit === "cover" ? "object-cover" : "object-contain",
           position === "top" ? "object-top" : "object-center",
+          "transition-transform duration-700 ease-out group-hover/shot:scale-[1.06]",
         )}
       />
     </div>
@@ -112,33 +113,33 @@ export function TelderiCollage({ images }: { images: string[] }) {
   return (
     <div className="absolute inset-0 grid grid-cols-[1fr_1.1fr] grid-rows-2 gap-3">
       {/* left: full-height portrait screen */}
-      <div className="border-line relative row-span-2 overflow-hidden rounded-[14px] border bg-white">
+      <div className="group/a border-line relative row-span-2 overflow-hidden rounded-[14px] border bg-white">
         <Image
           src={a}
           alt="Telderi — страница лота"
           fill
           sizes="360px"
-          className="object-cover object-top"
+          className="object-cover object-top transition-transform duration-700 ease-out group-hover/a:scale-[1.05]"
         />
       </div>
       {/* top-right: чат поддержки */}
-      <div className="border-line relative overflow-hidden rounded-[14px] border bg-white">
+      <div className="group/b border-line relative overflow-hidden rounded-[14px] border bg-white">
         <Image
           src={b}
           alt="Telderi — чат поддержки"
           fill
           sizes="400px"
-          className="object-cover object-top"
+          className="object-cover object-top transition-transform duration-700 ease-out group-hover/b:scale-[1.05]"
         />
       </div>
       {/* bottom-right: профиль / финансы */}
-      <div className="border-line relative overflow-hidden rounded-[14px] border bg-white">
+      <div className="group/c border-line relative overflow-hidden rounded-[14px] border bg-white">
         <Image
           src={c}
           alt="Telderi — профиль финансы"
           fill
           sizes="400px"
-          className="object-cover object-top"
+          className="object-cover object-top transition-transform duration-700 ease-out group-hover/c:scale-[1.05]"
         />
       </div>
     </div>
