@@ -11,6 +11,8 @@ import {
   type CaseDetail,
 } from "@/data/content";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   // telderi, event-panel and fleep-bot have dedicated pages in their own directories
   return caseStudies
