@@ -144,28 +144,22 @@ export function TelderiCollage({ images }: { images: string[] }) {
  * Phone collage: 3 mobile screenshots side by side.
  * Centre phone slightly taller (lifted) to match the Figma layout.
  */
-const PHONE_HOVER = [
-  // left phone: slides left + scales up
-  "group-hover:-translate-x-2 group-hover:scale-[1.05]",
-  // center phone: rises up + scales up
-  "group-hover:-translate-y-3 group-hover:scale-[1.05]",
-  // right phone: slides right + scales up
-  "group-hover:translate-x-2 group-hover:scale-[1.05]",
-] as const;
-
 export function PhoneCollage({ images, alts }: { images: string[]; alts: string[] }) {
   return (
-    <div className="flex h-full items-end justify-center gap-3">
+    <div className="flex h-full items-end justify-center gap-2 transition-transform duration-300 ease-out group-hover:scale-[1.04]">
       {images.map((src, i) => {
         const isMid = i === 1;
         return (
           <div
             key={src}
             className={cn(
-              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] border bg-white shadow-sm w-[30%]",
-              "transition-transform duration-300 ease-out",
-              isMid ? "h-full" : "h-[88%]",
-              PHONE_HOVER[i],
+              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] border shadow-sm w-[30%]",
+              "transition-all duration-300 ease-out",
+              isMid ? "z-20 h-full" : "z-10 h-[88%]",
+              // left: rotates left, slides behind center
+              i === 0 && "group-hover:-rotate-[18deg] group-hover:translate-x-[28%] group-hover:scale-[0.93]",
+              // right: rotates right, slides behind center
+              i === 2 && "group-hover:rotate-[18deg] group-hover:-translate-x-[28%] group-hover:scale-[0.93]",
             )}
           >
             <Image
@@ -173,7 +167,7 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
               alt={alts[i] ?? `Экран ${i + 1}`}
               fill
               sizes="(max-width: 640px) 33vw, 220px"
-              className="object-cover object-top"
+              className="object-contain object-top"
             />
           </div>
         );
