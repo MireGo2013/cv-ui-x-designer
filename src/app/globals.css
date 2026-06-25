@@ -25,7 +25,7 @@
   --radius-card: 24px; /* large cards                   [confirmed] */
   --radius-tile: 12px; /* link / skill tiles            [confirmed] */
   --radius-pill: 1000px; /* buttons                     [confirmed] */
-  --radius-logo: 12px; /* 52px logo squares             [verify]    */
+  --radius-logo: 1000px; /* 52px logo circles            [confirmed] */
 
   /* Layout */
   --container-content: 1212px; /* centered content width [confirmed: (1920-708)] */

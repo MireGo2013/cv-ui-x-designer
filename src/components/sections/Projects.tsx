@@ -1,4 +1,4 @@
-import { ProjectCard, Shot, TelderiCollage, PhoneCollage } from "@/components/ProjectCard";
+import { ProjectCard, Shot, TelderiCollage, PhoneCollage, FurnishCollage } from "@/components/ProjectCard";
 import { projects, projectImages } from "@/data/content";
 
 const p = Object.fromEntries(projects.map((p) => [p.slug, p]));
@@ -41,7 +41,7 @@ export function Projects() {
             subtitle={p["fleep-bot"].subtitle}
             visual={
               <PhoneCollage
-                images={projectImages["fleep-bot"]}
+                images={projectImages["fleep-bot"].slice(0, 3)}
                 alts={["Fleep.bot — настройки", "Fleep.bot — главный экран", "Fleep.bot — темы"]}
               />
             }
@@ -52,7 +52,7 @@ export function Projects() {
             title={p.furnish.title}
             subtitle={p.furnish.subtitle}
             visual={
-              <PhoneCollage
+              <FurnishCollage
                 images={projectImages.furnish}
                 alts={["Furnish — онбординг", "Furnish — каталог"]}
               />

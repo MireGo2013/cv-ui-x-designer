@@ -141,25 +141,20 @@ export function TelderiCollage({ images }: { images: string[] }) {
 }
 
 /**
- * Phone collage: 2–3 mobile screenshots side by side.
+ * Phone collage: 3 mobile screenshots side by side.
  * Centre phone slightly taller (lifted) to match the Figma layout.
  */
 export function PhoneCollage({ images, alts }: { images: string[]; alts: string[] }) {
-  const count = images.length;
   return (
-    <div className={cn("flex h-full items-end justify-center gap-3", count === 2 && "gap-4")}>
+    <div className="flex h-full items-end justify-center gap-3">
       {images.map((src, i) => {
-        const isMid = count === 3 && i === 1;
-        const isMid2 = count === 2 && i === 1;
+        const isMid = i === 1;
         return (
           <div
             key={src}
             className={cn(
-              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] border bg-white shadow-sm",
-              // height: centre phone is taller
-              isMid ? "h-full" : isMid2 ? "h-[95%]" : "h-[88%]",
-              // width: distribute evenly
-              count === 3 ? "w-[30%]" : "w-[44%]",
+              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] border bg-white shadow-sm w-[30%]",
+              isMid ? "h-full" : "h-[88%]",
             )}
           >
             <Image
@@ -172,6 +167,46 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
           </div>
         );
       })}
+    </div>
+  );
+}
+
+/**
+ * Furnish collage: 2 phones rotated and overlapping, matching Figma layout.
+ * Left phone rotated -10.5°, right phone rotated +11.3°.
+ */
+export function FurnishCollage({ images, alts }: { images: string[]; alts: string[] }) {
+  const [a, b] = images;
+  return (
+    <div className="relative h-full w-full">
+      <div
+        className="absolute"
+        style={{ left: "6%", top: "27%", width: "37%", height: "82%", transform: "rotate(-10.5deg)" }}
+      >
+        <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px] border bg-white shadow-sm">
+          <Image
+            src={a}
+            alt={alts[0] ?? "Furnish — экран 1"}
+            fill
+            sizes="210px"
+            className="object-cover object-top"
+          />
+        </div>
+      </div>
+      <div
+        className="absolute"
+        style={{ left: "43%", top: "21%", width: "37%", height: "82%", transform: "rotate(11.3deg)" }}
+      >
+        <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px] border bg-white shadow-sm">
+          <Image
+            src={b}
+            alt={alts[1] ?? "Furnish — экран 2"}
+            fill
+            sizes="210px"
+            className="object-cover object-top"
+          />
+        </div>
+      </div>
     </div>
   );
 }
