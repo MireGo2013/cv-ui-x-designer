@@ -33,7 +33,7 @@ function ArrowLeft() {
 /** Arrow between before/after phone screens. Points right on desktop, down on mobile. */
 function BeforeAfterArrow() {
   return (
-    <div className="flex shrink-0 items-center justify-center">
+    <div className="flex shrink-0 items-center justify-center md:self-center">
       {/* Desktop: → */}
       <svg
         className="hidden md:block"
@@ -247,8 +247,8 @@ export default function FleepBotPage() {
 
                   {/* Before → After phone screens */}
                   {item.beforeAfter && (
-                    <div className="mt-6 flex flex-col items-center gap-4 md:flex-row md:items-start md:gap-3">
-                      <div className="w-full max-w-[260px] overflow-hidden rounded-[24px] border border-line bg-white shadow-sm md:flex-1">
+                    <div className="mt-6 flex flex-col items-center gap-4 md:flex-row md:items-end md:gap-3">
+                      <div className="w-full max-w-[260px] overflow-hidden rounded-[24px] border border-line bg-white shadow-sm md:flex-1 md:mb-[80px]">
                         <Image
                           src={item.beforeAfter.before.src}
                           alt={item.beforeAfter.before.alt}

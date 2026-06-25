@@ -17,6 +17,11 @@ const interactive = cn(
  * - variant "wide": text left, visual right (desktop flex-row).
  * - variant "stack": title on top, visual below.
  * Clickable when href is set (case pages).
+ *
+ * Visual wrapper uses `relative min-h-*` so that all child collages
+ * can use `absolute inset-0` — the only pattern that reliably fills a
+ * flex item whose height is determined by min-height clamping (h-full
+ * does not resolve against min-height in CSS).
  */
 export function ProjectCard({
   title,
@@ -40,7 +45,7 @@ export function ProjectCard({
           </h3>
           <p className="text-muted mt-3 text-[16px] leading-[1.4] lg:mt-0">{subtitle}</p>
         </div>
-        <div className="min-h-[220px] min-w-0 flex-1">{visual}</div>
+        <div className="relative min-h-[220px] min-w-0 flex-1">{visual}</div>
       </div>
     ) : (
       <div className="flex h-full flex-col gap-5 p-8">
@@ -50,7 +55,7 @@ export function ProjectCard({
           </h3>
           <p className="text-muted mt-2 text-[16px] leading-[1.4]">{subtitle}</p>
         </div>
-        <div className="min-h-[240px] min-w-0 flex-1">{visual}</div>
+        <div className="relative min-h-[240px] min-w-0 flex-1">{visual}</div>
       </div>
     );
 
@@ -81,7 +86,7 @@ export function Shot({
   position?: "top" | "center";
 }) {
   return (
-    <div className="border-line relative h-full w-full overflow-hidden rounded-[16px] border bg-white">
+    <div className="absolute inset-0 overflow-hidden rounded-[16px] border border-line bg-white">
       <Image
         src={src}
         alt={alt}
@@ -105,7 +110,7 @@ export function Shot({
 export function TelderiCollage({ images }: { images: string[] }) {
   const [a, b, c] = images;
   return (
-    <div className="grid h-full min-h-[260px] grid-cols-[1fr_1.1fr] grid-rows-2 gap-3">
+    <div className="absolute inset-0 grid grid-cols-[1fr_1.1fr] grid-rows-2 gap-3">
       {/* left: full-height portrait screen */}
       <div className="border-line relative row-span-2 overflow-hidden rounded-[14px] border bg-white">
         <Image
@@ -143,22 +148,22 @@ export function TelderiCollage({ images }: { images: string[] }) {
 /**
  * Phone collage: 3 mobile screenshots side by side.
  * Centre phone slightly taller (lifted) to match the Figma layout.
+ * On hover: side phones rotate outward and slide behind the center phone,
+ * all zoom in together.
  */
 export function PhoneCollage({ images, alts }: { images: string[]; alts: string[] }) {
   return (
-    <div className="flex h-full items-end justify-center gap-2 transition-transform duration-300 ease-out group-hover:scale-[1.1]">
+    <div className="absolute inset-0 flex items-end justify-center gap-2 transition-transform duration-300 ease-out group-hover:scale-[1.1]">
       {images.map((src, i) => {
         const isMid = i === 1;
         return (
           <div
             key={src}
             className={cn(
-              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] w-[30%]",
+              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] border w-[30%]",
               "transition-all duration-300 ease-out",
               isMid ? "z-20 h-full" : "z-10 h-[88%]",
-              // left: rotates left, slides behind center
               i === 0 && "group-hover:-rotate-[18deg] group-hover:translate-x-[28%] group-hover:scale-[0.93]",
-              // right: rotates right, slides behind center
               i === 2 && "group-hover:rotate-[18deg] group-hover:-translate-x-[28%] group-hover:scale-[0.93]",
             )}
           >
@@ -167,7 +172,7 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
               alt={alts[i] ?? `Экран ${i + 1}`}
               fill
               sizes="(max-width: 640px) 33vw, 220px"
-              className="object-contain object-center"
+              className="object-cover object-top"
             />
           </div>
         );
@@ -183,7 +188,7 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
 export function FurnishCollage({ images, alts }: { images: string[]; alts: string[] }) {
   const [a, b] = images;
   return (
-    <div className="relative h-full w-full">
+    <div className="absolute inset-0">
       <div
         className="absolute"
         style={{ left: "6%", top: "27%", width: "41%", height: "100%", transform: "rotate(-10.5deg)" }}
