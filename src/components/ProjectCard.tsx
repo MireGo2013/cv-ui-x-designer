@@ -189,32 +189,38 @@ export function FurnishCollage({ images, alts }: { images: string[]; alts: strin
   const [a, b] = images;
   return (
     <div className="absolute inset-0">
+      {/* Left phone — lifts first (no delay) */}
       <div
-        className="absolute"
-        style={{ left: "6%", top: "27%", width: "41%", height: "100%", transform: "rotate(-10.5deg)" }}
+        className="absolute transition-transform duration-500 ease-out group-hover:-translate-y-5"
+        style={{ left: "6%", top: "47%", width: "41%", height: "100%" }}
       >
-        <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px] border bg-white shadow-sm">
-          <Image
-            src={a}
-            alt={alts[0] ?? "Furnish — экран 1"}
-            fill
-            sizes="210px"
-            className="object-cover object-top"
-          />
+        <div className="h-full w-full" style={{ transform: "rotate(-10.5deg)" }}>
+          <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px]">
+            <Image
+              src={a}
+              alt={alts[0] ?? "Furnish — экран 1"}
+              fill
+              sizes="210px"
+              className="object-contain object-top"
+            />
+          </div>
         </div>
       </div>
+      {/* Right phone — lifts second (100ms delay) */}
       <div
-        className="absolute"
-        style={{ left: "43%", top: "21%", width: "41%", height: "100%", transform: "rotate(11.3deg)" }}
+        className="absolute transition-transform duration-500 ease-out delay-100 group-hover:-translate-y-5"
+        style={{ left: "43%", top: "37%", width: "41%", height: "100%" }}
       >
-        <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px] border bg-white shadow-sm">
-          <Image
-            src={b}
-            alt={alts[1] ?? "Furnish — экран 2"}
-            fill
-            sizes="210px"
-            className="object-cover object-top"
-          />
+        <div className="h-full w-full" style={{ transform: "rotate(11.3deg)" }}>
+          <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px] ">
+            <Image
+              src={b}
+              alt={alts[1] ?? "Furnish — экран 2"}
+              fill
+              sizes="210px"
+              className="object-contain object-top"
+            />
+          </div>
         </div>
       </div>
     </div>
