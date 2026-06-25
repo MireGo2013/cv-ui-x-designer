@@ -9,14 +9,34 @@ import { telderiCase, telderiSegmentTable, type SegmentTableData } from "@/data/
 // SVG arrows for bottom nav
 function ArrowLeft() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M19 12H5M12 5l-7 7 7 7" />
     </svg>
   );
 }
 function ArrowRight() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
   );
@@ -40,7 +60,7 @@ const ROW_ACCENT: Record<string, string> = {
 function SegmentTable({ data }: { data: SegmentTableData }) {
   return (
     // Outer scroll container — never squeezes the table
-    <div className="overflow-x-auto rounded-[16px] border border-line">
+    <div className="border-line overflow-x-auto rounded-[16px] border">
       <table
         className="border-collapse text-[13px] leading-[1.55]"
         style={{ minWidth: "1020px", width: "max-content" }}
@@ -49,13 +69,13 @@ function SegmentTable({ data }: { data: SegmentTableData }) {
           <tr className="bg-surface">
             <th
               scope="col"
-              className="w-9 border-b border-r border-line px-2 py-3 text-center text-[11px] font-medium text-muted"
+              className="border-line text-muted w-9 border-r border-b px-2 py-3 text-center text-[11px] font-medium"
             >
               №
             </th>
             <th
               scope="col"
-              className="w-[170px] border-b border-r border-line px-3 py-3 text-left text-[11px] font-medium text-muted"
+              className="border-line text-muted w-[170px] border-r border-b px-3 py-3 text-left text-[11px] font-medium"
             >
               Характеристики
             </th>
@@ -63,10 +83,10 @@ function SegmentTable({ data }: { data: SegmentTableData }) {
               <th
                 key={col.label}
                 scope="col"
-                className="w-[210px] border-b border-r border-line px-3 py-3 text-left last:border-r-0"
+                className="border-line w-[210px] border-r border-b px-3 py-3 text-left last:border-r-0"
               >
-                <span className="block text-[12px] font-semibold text-ink">{col.label}</span>
-                <span className="mt-0.5 block text-[11px] font-normal text-muted">
+                <span className="text-ink block text-[12px] font-semibold">{col.label}</span>
+                <span className="text-muted mt-0.5 block text-[11px] font-normal">
                   {col.subtitle}
                 </span>
               </th>
@@ -77,25 +97,22 @@ function SegmentTable({ data }: { data: SegmentTableData }) {
           {data.rows.map((row, i) => {
             const bg = row.accent ? ROW_ACCENT[row.accent] : undefined;
             return (
-              <tr key={i} className={cn("border-b border-line last:border-b-0", bg)}>
-                <td className="border-r border-line px-2 py-3 text-center align-top text-[12px] text-muted">
+              <tr key={i} className={cn("border-line border-b last:border-b-0", bg)}>
+                <td className="border-line text-muted border-r px-2 py-3 text-center align-top text-[12px]">
                   {i + 1}
                 </td>
-                <td className="border-r border-line px-3 py-3 align-top text-[12px] font-semibold leading-[1.4] text-ink">
+                <td className="border-line text-ink border-r px-3 py-3 align-top text-[12px] leading-[1.4] font-semibold">
                   {row.label}
                 </td>
                 {row.cells.map((cell, j) => (
-                  <td
-                    key={j}
-                    className="border-r border-line px-3 py-3 align-top last:border-r-0"
-                  >
+                  <td key={j} className="border-line border-r px-3 py-3 align-top last:border-r-0">
                     {cell.length === 1 ? (
                       <p className="text-ink">{cell[0]}</p>
                     ) : (
                       <ul className="space-y-1.5">
                         {cell.map((item, k) => (
-                          <li key={k} className="flex gap-2 text-ink">
-                            <span className="mt-[6px] size-1 shrink-0 rounded-full bg-muted/70" />
+                          <li key={k} className="text-ink flex gap-2">
+                            <span className="bg-muted/70 mt-[6px] size-1 shrink-0 rounded-full" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -115,7 +132,8 @@ function SegmentTable({ data }: { data: SegmentTableData }) {
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function TelderiPage() {
-  const { title, role, tags, summary, context, problem, research, goals, solutions, results } = telderiCase;
+  const { title, role, tags, summary, context, problem, research, goals, solutions, results } =
+    telderiCase;
 
   return (
     <>
@@ -123,30 +141,31 @@ export default function TelderiPage() {
 
       <main className="container-content py-8 md:py-14">
         <div className="mx-auto max-w-[720px]">
-
           {/* Back button */}
           <Link
             href="/"
             aria-label="Назад на главную"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-line bg-subtle text-ink transition-colors hover:border-accent hover:bg-accent hover:text-white"
+            className="border-line bg-subtle text-ink hover:border-accent hover:bg-accent inline-flex size-10 items-center justify-center rounded-full border transition-colors hover:text-white"
           >
             <ChevronLeft />
           </Link>
 
           {/* ── Title row ── */}
           <div className="mt-8 flex items-baseline justify-between gap-6">
-            <h1 className="text-accent text-[42px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[56px]">
+            <h1 className="text-accent text-[42px] leading-[1.05] font-semibold tracking-[-0.03em] md:text-[56px]">
               {title}
             </h1>
-            <span className="text-muted shrink-0 text-[15px] leading-[1.4]">{role}</span>
+            <span className="text-muted bg-line shrink-0 rounded-full px-3 py-1.5 text-[15px] leading-[1.4]">
+              {role}
+            </span>
           </div>
 
           {/* Tags */}
           <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
             {tags.map((tag, i) => (
               <span key={tag} className="flex items-center gap-2">
-                {i > 0 && <span className="select-none text-muted">•</span>}
-                <span className="text-[14px] text-muted">{tag}</span>
+                {i > 0 && <span className="text-muted select-none">•</span>}
+                <span className="text-muted text-[14px]">{tag}</span>
               </span>
             ))}
           </div>
@@ -154,7 +173,7 @@ export default function TelderiPage() {
           {/* Summary */}
           <div className="mt-6 space-y-2">
             {summary.map((p, i) => (
-              <p key={i} className="text-[15px] leading-[1.65] text-ink">
+              <p key={i} className="text-ink text-[15px] leading-[1.65]">
                 {p}
               </p>
             ))}
@@ -164,13 +183,13 @@ export default function TelderiPage() {
           <section className="mt-12" aria-labelledby="section-context">
             <h2
               id="section-context"
-              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+              className="text-ink text-[22px] leading-[1.2] font-semibold tracking-[-0.01em]"
             >
               {context.heading}
             </h2>
             <div className="mt-4 space-y-4">
               {context.paragraphs.map((p, i) => (
-                <p key={i} className="text-[15px] leading-[1.65] text-ink">
+                <p key={i} className="text-ink text-[15px] leading-[1.65]">
                   {p}
                 </p>
               ))}
@@ -181,52 +200,52 @@ export default function TelderiPage() {
           <section className="mt-12" aria-labelledby="section-problem">
             <h2
               id="section-problem"
-              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+              className="text-ink text-[22px] leading-[1.2] font-semibold tracking-[-0.01em]"
             >
               {problem.heading}
             </h2>
-            <p className="mt-4 text-[15px] leading-[1.65] text-ink">{problem.text}</p>
+            <p className="text-ink mt-4 text-[15px] leading-[1.65]">{problem.text}</p>
           </section>
 
           {/* ── Исследование ── */}
           <section className="mt-12" aria-labelledby="section-research">
             <h2
               id="section-research"
-              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+              className="text-ink text-[22px] leading-[1.2] font-semibold tracking-[-0.01em]"
             >
               {research.heading}
             </h2>
-            <p className="mt-4 text-[15px] leading-[1.65] text-ink">{research.intro}</p>
+            <p className="text-ink mt-4 text-[15px] leading-[1.65]">{research.intro}</p>
 
             {/* Ключевые роли */}
-            <p className="mt-5 text-[15px] font-semibold text-ink">{research.rolesLabel}</p>
+            <p className="text-ink mt-5 text-[15px] font-semibold">{research.rolesLabel}</p>
             <ul className="mt-2 space-y-2">
               {research.roles.map((r, i) => (
-                <li key={i} className="flex gap-2.5 text-[15px] leading-[1.65] text-ink">
-                  <span className="mt-[9px] size-1.5 shrink-0 rounded-full bg-ink/40" />
+                <li key={i} className="text-ink flex gap-2.5 text-[15px] leading-[1.65]">
+                  <span className="bg-ink/40 mt-[9px] size-1.5 shrink-0 rounded-full" />
                   <span>{r}</span>
                 </li>
               ))}
             </ul>
 
             {/* Segmentation table — breaks out of the 720px column via -mx so it can breathe */}
-            <div className="mt-8 -mx-4 md:-mx-0">
+            <div className="-mx-4 mt-8 md:-mx-0">
               <SegmentTable data={telderiSegmentTable} />
             </div>
 
             {/* Главные боли — 2×2 grid with tag chips */}
-            <p className="mt-10 text-[15px] font-semibold text-ink">{research.painsLabel}</p>
+            <p className="text-ink mt-10 text-[15px] font-semibold">{research.painsLabel}</p>
             <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
               {research.pains.map((pain, i) => (
                 <div key={i}>
-                  <p className="text-[15px] font-semibold text-ink">
+                  <p className="text-ink text-[15px] font-semibold">
                     {i + 1}. {pain.title}
                   </p>
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {pain.items.map((item) => (
                       <span
                         key={item}
-                        className="rounded-full bg-accent/10 px-3 py-1 text-[13px] leading-[1.3] text-accent"
+                        className="bg-accent/10 text-accent rounded-full px-3 py-1 text-[13px] leading-[1.3]"
                       >
                         {item}
                       </span>
@@ -239,38 +258,34 @@ export default function TelderiPage() {
             {/* Цитаты из интервью */}
             <div className="mt-8 space-y-3">
               {research.quotes.map((q, i) => (
-                <blockquote
-                  key={i}
-                  className="relative rounded-r-[12px] bg-surface py-4 pl-5 pr-4"
-                >
+                <blockquote key={i} className="bg-surface relative rounded-r-[12px] py-4 pr-4 pl-5">
                   {/* Accent left bar */}
-                  <span className="absolute inset-y-0 left-0 w-[3px] rounded-full bg-accent" />
-                  <p className="text-[15px] leading-[1.65] text-ink">«{q.text}»</p>
-                  <cite className="mt-1.5 block text-[13px] not-italic text-muted">
+                  <span className="bg-accent absolute inset-y-0 left-0 w-[3px] rounded-full" />
+                  <p className="text-ink text-[15px] leading-[1.65]">«{q.text}»</p>
+                  <cite className="text-muted mt-1.5 block text-[13px] not-italic">
                     — {q.author}
                   </cite>
                 </blockquote>
               ))}
             </div>
-
           </section>
 
           {/* ── Цели ── */}
           <section className="mt-12" aria-labelledby="section-goals">
             <h2
               id="section-goals"
-              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+              className="text-ink text-[22px] leading-[1.2] font-semibold tracking-[-0.01em]"
             >
               {goals.heading}
             </h2>
             <div className="mt-5 space-y-6">
               {goals.groups.map((group) => (
                 <div key={group.label}>
-                  <p className="text-[15px] font-semibold text-ink">{group.label}</p>
+                  <p className="text-ink text-[15px] font-semibold">{group.label}</p>
                   <ul className="mt-2 space-y-1.5">
                     {group.items.map((item) => (
-                      <li key={item} className="flex gap-2.5 text-[15px] leading-[1.65] text-ink">
-                        <span className="mt-[9px] size-1.5 shrink-0 rounded-full bg-ink/40" />
+                      <li key={item} className="text-ink flex gap-2.5 text-[15px] leading-[1.65]">
+                        <span className="bg-ink/40 mt-[9px] size-1.5 shrink-0 rounded-full" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -284,7 +299,7 @@ export default function TelderiPage() {
           <section className="mt-12" aria-labelledby="section-solutions">
             <h2
               id="section-solutions"
-              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+              className="text-ink text-[22px] leading-[1.2] font-semibold tracking-[-0.01em]"
             >
               {solutions.heading}
             </h2>
@@ -292,19 +307,15 @@ export default function TelderiPage() {
             <div className="mt-6 space-y-12">
               {solutions.items.map((item) => (
                 <div key={item.title}>
-                  <h3 className="text-[17px] font-semibold leading-[1.3] text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-[1.65] text-ink">
-                    {item.description}
-                  </p>
+                  <h3 className="text-ink text-[17px] leading-[1.3] font-semibold">{item.title}</h3>
+                  <p className="text-ink mt-2 text-[15px] leading-[1.65]">{item.description}</p>
                   {/* Images */}
                   {item.images.length > 0 && (
                     <div className="mt-6 space-y-4">
                       {item.images.map((img) => (
                         <div
                           key={img.src}
-                          className="overflow-hidden rounded-[16px] border border-line bg-white shadow-sm"
+                          className="border-line overflow-hidden rounded-[16px] border bg-white shadow-sm"
                         >
                           <Image
                             src={img.src}
@@ -323,18 +334,18 @@ export default function TelderiPage() {
                     <div className="mt-8 space-y-6">
                       {item.subsections.map((sub) => (
                         <div key={sub.title}>
-                          <h4 className="text-[15px] font-semibold leading-[1.3] text-ink">
+                          <h4 className="text-ink text-[15px] leading-[1.3] font-semibold">
                             {sub.title}
                           </h4>
-                          <p className="mt-2 text-[15px] leading-[1.65] text-ink">{sub.text}</p>
+                          <p className="text-ink mt-2 text-[15px] leading-[1.65]">{sub.text}</p>
                           {sub.highlight && (
-                            <blockquote className="relative mt-4 rounded-r-[12px] bg-surface py-4 pl-5 pr-4">
-                              <span className="absolute inset-y-0 left-0 w-[3px] rounded-full bg-accent" />
-                              <p className="text-[15px] leading-[1.65] text-ink">{sub.highlight}</p>
+                            <blockquote className="bg-surface relative mt-4 rounded-r-[12px] py-4 pr-4 pl-5">
+                              <span className="bg-accent absolute inset-y-0 left-0 w-[3px] rounded-full" />
+                              <p className="text-ink text-[15px] leading-[1.65]">{sub.highlight}</p>
                             </blockquote>
                           )}
                           {sub.image && (
-                            <div className="mt-6 overflow-hidden rounded-[16px] border border-line bg-white shadow-sm">
+                            <div className="border-line mt-6 overflow-hidden rounded-[16px] border bg-white shadow-sm">
                               <Image
                                 src={sub.image}
                                 alt={sub.title}
@@ -358,14 +369,14 @@ export default function TelderiPage() {
           <section className="mt-12" aria-labelledby="section-results">
             <h2
               id="section-results"
-              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+              className="text-ink text-[22px] leading-[1.2] font-semibold tracking-[-0.01em]"
             >
               {results.heading}
             </h2>
             <ul className="mt-5 space-y-3">
               {results.items.map((item, i) => (
-                <li key={i} className="flex gap-3 text-[15px] leading-[1.65] text-ink">
-                  <span className="mt-[9px] size-1.5 shrink-0 rounded-full bg-ink/40" />
+                <li key={i} className="text-ink flex gap-3 text-[15px] leading-[1.65]">
+                  <span className="bg-ink/40 mt-[9px] size-1.5 shrink-0 rounded-full" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -373,27 +384,25 @@ export default function TelderiPage() {
           </section>
 
           {/* ── Нижняя навигация ── */}
-          <div className="mt-16 flex items-center justify-between border-t border-line pt-8">
+          <div className="border-line mt-16 flex items-center justify-between border-t pt-8">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-subtle px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-white"
+              className="border-line bg-subtle text-ink hover:border-accent hover:bg-accent inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[14px] font-medium transition-colors hover:text-white"
             >
-              <ArrowLeft />
-              К проектам
+              <ArrowLeft />К проектам
             </Link>
             <Link
               href="/cases/event-panel"
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-subtle px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-white"
+              className="border-line bg-subtle text-ink hover:border-accent hover:bg-accent inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[14px] font-medium transition-colors hover:text-white"
             >
               Следующий кейс
               <ArrowRight />
             </Link>
           </div>
-
         </div>
       </main>
 
-      <footer className="container-content border-t border-line py-8 text-center text-[14px] text-muted">
+      <footer className="container-content border-line text-muted border-t py-8 text-center text-[14px]">
         © {new Date().getFullYear()} Алина Соболь
       </footer>
     </>
