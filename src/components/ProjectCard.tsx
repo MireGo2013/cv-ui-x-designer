@@ -146,14 +146,14 @@ export function TelderiCollage({ images }: { images: string[] }) {
  */
 export function PhoneCollage({ images, alts }: { images: string[]; alts: string[] }) {
   return (
-    <div className="flex h-full items-end justify-center gap-2 transition-transform duration-300 ease-out group-hover:scale-[1.04]">
+    <div className="flex h-full items-end justify-center gap-2 transition-transform duration-300 ease-out group-hover:scale-[1.1]">
       {images.map((src, i) => {
         const isMid = i === 1;
         return (
           <div
             key={src}
             className={cn(
-              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] border shadow-sm w-[30%]",
+              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] w-[30%]",
               "transition-all duration-300 ease-out",
               isMid ? "z-20 h-full" : "z-10 h-[88%]",
               // left: rotates left, slides behind center
@@ -167,7 +167,7 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
               alt={alts[i] ?? `Экран ${i + 1}`}
               fill
               sizes="(max-width: 640px) 33vw, 220px"
-              className="object-contain object-top"
+              className="object-contain object-center"
             />
           </div>
         );
