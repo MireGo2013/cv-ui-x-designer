@@ -1,9 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 import { Header } from "@/components/sections/Header";
 import { ChevronLeft } from "@/components/ui/IconButton";
 import { telderiCase, telderiSegmentTable, type SegmentTableData } from "@/data/content";
+
+// SVG arrows for bottom nav
+function ArrowLeft() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M19 12H5M12 5l-7 7 7 7" />
+    </svg>
+  );
+}
+function ArrowRight() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  );
+}
 
 export const metadata: Metadata = {
   title: "Telderi — кейс",
@@ -98,7 +115,7 @@ function SegmentTable({ data }: { data: SegmentTableData }) {
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function TelderiPage() {
-  const { title, role, tags, summary, context, problem, research } = telderiCase;
+  const { title, role, tags, summary, context, problem, research, goals, solutions, results } = telderiCase;
 
   return (
     <>
@@ -237,6 +254,141 @@ export default function TelderiPage() {
             </div>
 
           </section>
+
+          {/* ── Цели ── */}
+          <section className="mt-12" aria-labelledby="section-goals">
+            <h2
+              id="section-goals"
+              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+            >
+              {goals.heading}
+            </h2>
+            <div className="mt-5 space-y-6">
+              {goals.groups.map((group) => (
+                <div key={group.label}>
+                  <p className="text-[15px] font-semibold text-ink">{group.label}</p>
+                  <ul className="mt-2 space-y-1.5">
+                    {group.items.map((item) => (
+                      <li key={item} className="flex gap-2.5 text-[15px] leading-[1.65] text-ink">
+                        <span className="mt-[9px] size-1.5 shrink-0 rounded-full bg-ink/40" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── Решения ── */}
+          <section className="mt-12" aria-labelledby="section-solutions">
+            <h2
+              id="section-solutions"
+              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+            >
+              {solutions.heading}
+            </h2>
+
+            <div className="mt-6 space-y-12">
+              {solutions.items.map((item) => (
+                <div key={item.title}>
+                  <h3 className="text-[17px] font-semibold leading-[1.3] text-ink">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-[1.65] text-ink">
+                    {item.description}
+                  </p>
+                  {/* Images */}
+                  {item.images.length > 0 && (
+                    <div className="mt-6 space-y-4">
+                      {item.images.map((img) => (
+                        <div
+                          key={img.src}
+                          className="overflow-hidden rounded-[16px] border border-line bg-white shadow-sm"
+                        >
+                          <Image
+                            src={img.src}
+                            alt={img.alt}
+                            width={img.width}
+                            height={img.height}
+                            sizes="(max-width: 768px) 100vw, 720px"
+                            className="h-auto w-full object-contain"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {/* Subsections — А/В-тест and similar */}
+                  {item.subsections.length > 0 && (
+                    <div className="mt-8 space-y-6">
+                      {item.subsections.map((sub) => (
+                        <div key={sub.title}>
+                          <h4 className="text-[15px] font-semibold leading-[1.3] text-ink">
+                            {sub.title}
+                          </h4>
+                          <p className="mt-2 text-[15px] leading-[1.65] text-ink">{sub.text}</p>
+                          {sub.highlight && (
+                            <blockquote className="relative mt-4 rounded-r-[12px] bg-surface py-4 pl-5 pr-4">
+                              <span className="absolute inset-y-0 left-0 w-[3px] rounded-full bg-accent" />
+                              <p className="text-[15px] leading-[1.65] text-ink">{sub.highlight}</p>
+                            </blockquote>
+                          )}
+                          {sub.image && (
+                            <div className="mt-6 overflow-hidden rounded-[16px] border border-line bg-white shadow-sm">
+                              <Image
+                                src={sub.image}
+                                alt={sub.title}
+                                width={1200}
+                                height={800}
+                                sizes="(max-width: 768px) 100vw, 720px"
+                                className="h-auto w-full object-contain"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── Результаты ── */}
+          <section className="mt-12" aria-labelledby="section-results">
+            <h2
+              id="section-results"
+              className="text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] text-ink"
+            >
+              {results.heading}
+            </h2>
+            <ul className="mt-5 space-y-3">
+              {results.items.map((item, i) => (
+                <li key={i} className="flex gap-3 text-[15px] leading-[1.65] text-ink">
+                  <span className="mt-[9px] size-1.5 shrink-0 rounded-full bg-ink/40" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {/* ── Нижняя навигация ── */}
+          <div className="mt-16 flex items-center justify-between border-t border-line pt-8">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-subtle px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-white"
+            >
+              <ArrowLeft />
+              К проектам
+            </Link>
+            <Link
+              href="/cases/event-panel"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-subtle px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-white"
+            >
+              Следующий кейс
+              <ArrowRight />
+            </Link>
+          </div>
 
         </div>
       </main>
