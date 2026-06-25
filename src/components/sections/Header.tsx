@@ -4,7 +4,25 @@ import { useState } from "react";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import type { IconName } from "@/components/ui/Icon";
 import { headerLinks } from "@/data/content";
+
+/** Coloured icon badge — accent tint bg, turns white on parent hover. */
+function IconBadge({ name }: { name: IconName }) {
+  const isCircle = name === "telegram" || name === "behance";
+  return (
+    <span
+      className={cn(
+        "inline-flex size-6 shrink-0 items-center justify-center transition-colors",
+        isCircle ? "rounded-full" : "rounded-[6px]",
+        "bg-accent/15 text-accent",
+        "group-hover/ni:bg-white/20 group-hover/ni:text-white",
+      )}
+    >
+      <Icon name={name} />
+    </span>
+  );
+}
 
 const isHttp = (href: string) => /^https?:/i.test(href);
 const attrs = (href: string) =>
@@ -30,8 +48,8 @@ export function Header() {
           <ul className="flex items-center gap-4">
             {headerLinks.map((item) => (
               <li key={item.label}>
-                <Button as="a" href={item.href} aria-label={item.label} {...attrs(item.href)}>
-                  <Icon name={item.icon} />
+                <Button as="a" href={item.href} aria-label={item.label} {...attrs(item.href)} className="group/ni">
+                  <IconBadge name={item.icon} />
                   {item.label}
                 </Button>
               </li>
@@ -88,9 +106,9 @@ export function Header() {
                 href={item.href}
                 {...attrs(item.href)}
                 onClick={() => setOpen(false)}
-                className="border-line bg-subtle text-ink hover:border-accent hover:bg-accent flex items-center gap-2 rounded-[12px] border px-4 py-3 text-[16px] font-medium transition-colors hover:text-white"
+                className="group/ni border-line bg-subtle text-ink hover:border-accent hover:bg-accent flex items-center gap-2 rounded-[12px] border px-4 py-3 text-[16px] font-medium transition-colors hover:text-white"
               >
-                <Icon name={item.icon} />
+                <IconBadge name={item.icon} />
                 {item.label}
               </a>
             </li>
