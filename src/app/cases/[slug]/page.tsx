@@ -12,8 +12,10 @@ import {
 } from "@/data/content";
 
 export function generateStaticParams() {
-  // telderi has its own dedicated page at /cases/telderi/page.tsx
-  return caseStudies.filter((c) => c.slug !== "telderi").map((c) => ({ slug: c.slug }));
+  // telderi, event-panel and fleep-bot have dedicated pages in their own directories
+  return caseStudies
+    .filter((c) => c.slug !== "telderi" && c.slug !== "event-panel" && c.slug !== "fleep-bot")
+    .map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
