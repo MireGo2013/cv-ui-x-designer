@@ -38,8 +38,8 @@ export function ProjectCard({
 }) {
   const body =
     variant === "wide" ? (
-      <div className="flex h-full flex-col gap-6 p-8 lg:flex-row lg:gap-8 lg:p-10">
-        <div className="flex shrink-0 flex-col justify-between lg:w-[320px]">
+      <div className="flex h-full flex-col gap-6 pt-8 pr-8 pl-8 lg:flex-row lg:gap-8 lg:pt-10 lg:pr-10 lg:pl-10">
+        <div className="flex shrink-0 flex-col justify-between pb-8 lg:w-[320px]">
           <h3 className="text-ink text-[22px] leading-[1.2] font-medium tracking-[-0.02em] lg:text-[28px]">
             {title}
           </h3>
@@ -83,10 +83,10 @@ export function Shot({
   src: string;
   alt: string;
   fit?: "cover" | "contain";
-  position?: "top" | "center";
+  position?: "top" | "bottom" | "center";
 }) {
   return (
-    <div className="group/shot absolute inset-0 overflow-hidden rounded-[16px] border border-line bg-white">
+    <div className="group/shot border-line absolute inset-0 overflow-hidden rounded-t-[16px]">
       <Image
         src={src}
         alt={alt}
@@ -94,7 +94,11 @@ export function Shot({
         sizes="(max-width: 1024px) 100vw, 760px"
         className={cn(
           fit === "cover" ? "object-cover" : "object-contain",
-          position === "top" ? "object-top" : "object-center",
+          position === "top"
+            ? "object-top"
+            : position === "bottom"
+              ? "object-bottom"
+              : "object-center",
           "transition-transform duration-700 ease-out group-hover/shot:scale-[1.06]",
         )}
       />
@@ -161,11 +165,13 @@ export function PhoneCollage({ images, alts }: { images: string[]; alts: string[
           <div
             key={src}
             className={cn(
-              "border-line/60 relative shrink-0 overflow-hidden rounded-[22px] w-[30%]",
+              "border-line/60 relative w-[30%] shrink-0 overflow-hidden rounded-[22px]",
               "transition-all duration-300 ease-out",
               isMid ? "z-20 h-full" : "z-10 h-[88%]",
-              i === 0 && "group-hover:-rotate-[18deg] group-hover:translate-x-[28%] group-hover:scale-[0.93]",
-              i === 2 && "group-hover:rotate-[18deg] group-hover:-translate-x-[28%] group-hover:scale-[0.93]",
+              i === 0 &&
+                "group-hover:translate-x-[28%] group-hover:scale-[0.93] group-hover:-rotate-[18deg]",
+              i === 2 &&
+                "group-hover:-translate-x-[28%] group-hover:scale-[0.93] group-hover:rotate-[18deg]",
             )}
           >
             <Image
@@ -209,11 +215,11 @@ export function FurnishCollage({ images, alts }: { images: string[]; alts: strin
       </div>
       {/* Right phone — lifts second (100ms delay) */}
       <div
-        className="absolute transition-transform duration-500 ease-out delay-100 group-hover:-translate-y-5"
+        className="absolute transition-transform delay-100 duration-500 ease-out group-hover:-translate-y-5"
         style={{ left: "43%", top: "37%", width: "41%", height: "100%" }}
       >
         <div className="h-full w-full" style={{ transform: "rotate(11.3deg)" }}>
-          <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px] ">
+          <div className="border-line/60 relative h-full w-full overflow-hidden rounded-[22px]">
             <Image
               src={b}
               alt={alts[1] ?? "Furnish — экран 2"}

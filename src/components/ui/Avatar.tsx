@@ -21,7 +21,7 @@ export function Avatar({
     <div
       className={cn(
         "[container-type:size] relative aspect-square rounded-full",
-        "bg-gradient-to-br from-[#b8c6ff] to-[#7893ff] p-[2.5px]",
+        "bg-gradient-to-br from-[#b8c6ff] to-[#7893ff]",
         className,
       )}
     >

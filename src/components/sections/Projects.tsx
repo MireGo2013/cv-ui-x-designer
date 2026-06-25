@@ -1,4 +1,10 @@
-import { ProjectCard, Shot, TelderiCollage, PhoneCollage, FurnishCollage } from "@/components/ProjectCard";
+import {
+  ProjectCard,
+  Shot,
+  TelderiCollage,
+  PhoneCollage,
+  FurnishCollage,
+} from "@/components/ProjectCard";
 import { projects, projectImages } from "@/data/content";
 
 const p = Object.fromEntries(projects.map((p) => [p.slug, p]));
@@ -26,8 +32,8 @@ export function Projects() {
             <Shot
               src={projectImages["event-panel"][0]}
               alt="EventPanel — дашборд аналитики"
-              fit="cover"
-              position="top"
+              fit="contain"
+              position="center"
             />
           }
         />
@@ -70,8 +76,8 @@ export function Projects() {
             <Shot
               src={projectImages.geonode[0]}
               alt="Geonode — B2B SaaS платформа"
-              fit="cover"
-              position="top"
+              fit="contain"
+              position="bottom"
             />
           }
         />

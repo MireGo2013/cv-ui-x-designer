@@ -17,7 +17,7 @@ export function Hero() {
           initials="АС"
           className="size-20 shrink-0 md:size-[200px]"
         />
-        <Card className="w-full max-w-[680px] p-6 md:w-auto md:p-8">
+        <Card className="w-full max-w-[680px] border-none bg-transparent p-6 md:w-auto md:p-8">
           <h1 className="text-ink text-[28px] leading-[1.2] font-medium tracking-[-0.02em] md:text-[36px]">
             {profile.name}
           </h1>
