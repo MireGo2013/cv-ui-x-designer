@@ -45,6 +45,11 @@ export function Career() {
                 rel="noopener noreferrer"
                 className="bg-[#FFFFFF]"
               >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false" style={{ transform: "rotate(10deg)" }}>
+                  <path d="M2 2a2 2 0 0 1 2-2h6l4 4v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2Z" fill="#4285F4" />
+                  <path d="M10 0l4 4h-4V0Z" fill="#A8C7FA" />
+                  <path d="M4.5 7.5h7v1h-7v-1Zm0 2.5h7v1h-7V10Zm0 2.5h4.5v1H4.5V12.5Z" fill="white" />
+                </svg>
                 Скачать CV
               </Button>
             </div>
