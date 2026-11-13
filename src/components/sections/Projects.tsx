@@ -67,21 +67,33 @@ export function Projects() {
           />
         </div>
 
-        {/* Geonode — wide screenshot */}
-        <ProjectCard
-          variant="wide"
-          href={p.geonode.href}
-          title={p.geonode.title}
-          subtitle={p.geonode.subtitle}
-          visual={
-            <Shot
-              src={projectImages.geonode[0]}
-              alt="Geonode — B2B SaaS платформа"
-              fit="contain"
-              position="bottom"
-            />
-          }
-        />
+        {/* Geonode + Теплинг — two stacked cards (Figma "Cards" 2068:9977) */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <ProjectCard
+            variant="stack"
+            href={p.geonode.href}
+            title={p.geonode.title}
+            subtitle={p.geonode.subtitle}
+            visual={
+              // Screenshot bleeds to the card's bottom edge, 15px side insets.
+              <div className="absolute -inset-x-[17px] top-0 -bottom-8 lg:top-10">
+                <Shot src={projectImages.geonode[0]} alt="Geonode — B2B SaaS платформа" />
+              </div>
+            }
+          />
+          <ProjectCard
+            variant="stack"
+            href={p.tepling.href}
+            title={p.tepling.title}
+            subtitle={p.tepling.subtitle}
+            visual={
+              // Screen runs past the card's bottom edge, as in the design.
+              <div className="absolute inset-x-0 top-0 -bottom-8 lg:inset-x-[6.5%] lg:-bottom-[66px]">
+                <Shot src={projectImages.tepling[0]} alt="Теплинг — главная страница сайта" ring />
+              </div>
+            }
+          />
+        </div>
       </div>
     </section>
   );

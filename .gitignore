@@ -7,3 +7,6 @@ next-env.d.ts
 .env*
 .DS_Store
 /coverage
+.idea
+/CLAUDE.md
+/CONTEXT.md
